@@ -3,66 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreelancerCRM - CRM для фрилансеров</title>
+    <title>FreelancerCRM - Профессиональная CRM для фрилансеров</title>
+    <meta name="description" content="Управляйте клиентами и проектами. Бесплатная версия + Premium с автоматической оплатой через ЮKassa">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Arial', sans-serif; background: #1e1e2e; color: white; line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
         /* Header */
-        header { background: #2d2d30; padding: 20px 0; border-bottom: 3px solid #00ff88; }
-        .logo { font-size: 28px; font-weight: bold; color: #00ff88; }
+        header { background: #2d2d30; padding: 20px 0; border-bottom: 3px solid #00ff88; position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .logo { font-size: 28px; font-weight: bold; color: #00ff88; float: left; }
         nav { float: right; }
-        nav a { color: white; text-decoration: none; margin-left: 25px; font-weight: 500; }
+        nav a { color: white; text-decoration: none; margin-left: 25px; font-weight: 500; transition: color 0.3s; }
         nav a:hover { color: #00ff88; }
         
         /* Hero Section */
-        .hero { text-align: center; padding: 100px 0; background: linear-gradient(135deg, #007acc, #1e1e2e); }
+        .hero { text-align: center; padding: 150px 0 100px; background: linear-gradient(135deg, #007acc, #1e1e2e); margin-top: 80px; }
         .hero h1 { font-size: 3.5em; margin-bottom: 20px; background: linear-gradient(45deg, #00ff88, #007acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero p { font-size: 1.3em; margin-bottom: 40px; color: #cccccc; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .btn { display: inline-block; padding: 15px 35px; background: #00ff88; color: #1e1e2e; text-decoration: none; border-radius: 8px; font-weight: bold; margin: 0 15px; font-size: 1.1em; transition: transform 0.3s; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3); }
+        .btn { display: inline-block; padding: 18px 40px; background: #00ff88; color: #1e1e2e; text-decoration: none; border-radius: 10px; font-weight: bold; margin: 0 15px; font-size: 1.2em; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3); background: #00e579; }
         .btn-secondary { background: #007acc; color: white; }
+        .btn-secondary:hover { background: #006bb3; box-shadow: 0 10px 25px rgba(0, 122, 204, 0.3); }
         
         /* Features */
         .features { padding: 100px 0; }
-        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 60px; color: #00ff88; }
+        .section-title { text-align: center; font-size: 2.8em; margin-bottom: 60px; color: #00ff88; }
         .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .feature-card { background: #2d2d30; padding: 40px; border-radius: 15px; border: 1px solid #3d3d3d; transition: transform 0.3s; }
-        .feature-card:hover { transform: translateY(-5px); border-color: #00ff88; }
-        .feature-card h3 { color: #00ff88; margin-bottom: 20px; font-size: 1.4em; }
+        .feature-card { background: #2d2d30; padding: 40px; border-radius: 15px; border: 1px solid #3d3d3d; transition: all 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); border-color: #00ff88; box-shadow: 0 15px 30px rgba(0, 255, 136, 0.1); }
+        .feature-card h3 { color: #00ff88; margin-bottom: 20px; font-size: 1.4em; display: flex; align-items: center; }
+        .feature-card h3::before { content: "✓ "; margin-right: 10px; }
         .feature-card p { color: #cccccc; line-height: 1.8; }
         
         /* Pricing */
         .pricing { padding: 100px 0; background: #2d2d30; }
-        .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .pricing-card { background: #1e1e2e; padding: 50px 30px; border-radius: 15px; text-align: center; border: 2px solid #3d3d3d; transition: all 0.3s; }
-        .pricing-card:hover { border-color: #00ff88; transform: scale(1.05); }
-        .pricing-card.popular { border-color: #007acc; position: relative; }
-        .popular-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #007acc; color: white; padding: 5px 20px; border-radius: 15px; font-size: 0.9em; }
-        .price { font-size: 3em; color: #00ff88; margin: 20px 0; font-weight: bold; }
-        .price-period { color: #888; font-size: 0.9em; }
+        .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 50px; }
+        .pricing-card { background: #1e1e2e; padding: 50px 30px; border-radius: 15px; text-align: center; border: 2px solid #3d3d3d; transition: all 0.3s; position: relative; }
+        .pricing-card:hover { transform: scale(1.02); border-color: #00ff88; }
+        .pricing-card.popular { border-color: #007acc; transform: scale(1.05); }
+        .popular-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #007acc; color: white; padding: 8px 25px; border-radius: 20px; font-size: 0.9em; font-weight: bold; }
+        .price { font-size: 3.5em; color: #00ff88; margin: 20px 0; font-weight: bold; line-height: 1; }
+        .price-period { color: #888; font-size: 1em; margin-bottom: 20px; }
         .pricing-features { list-style: none; text-align: left; margin: 30px 0; }
-        .pricing-features li { padding: 8px 0; color: #cccccc; }
-        .pricing-features li:before { content: "✓ "; color: #00ff88; font-weight: bold; }
+        .pricing-features li { padding: 12px 0; color: #cccccc; border-bottom: 1px solid #2d2d30; }
+        .pricing-features li:last-child { border-bottom: none; }
+        .pricing-features li::before { content: "✓ "; color: #00ff88; font-weight: bold; margin-right: 10px; }
         
         /* Download */
         .download { padding: 100px 0; text-align: center; }
-        .download h2 { font-size: 2.5em; margin-bottom: 20px; color: #00ff88; }
-        .download p { color: #cccccc; font-size: 1.2em; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .download-info { background: #2d2d30; padding: 20px; border-radius: 10px; margin-top: 30px; display: inline-block; }
+        .download-box { background: #2d2d30; padding: 50px; border-radius: 15px; max-width: 600px; margin: 0 auto; border: 2px solid #00ff88; }
+        .download-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 40px 0; }
+        .step { text-align: center; padding: 20px; }
+        .step-number { background: #007acc; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: bold; }
         
         /* Footer */
         footer { background: #2d2d30; padding: 50px 0; text-align: center; margin-top: 80px; border-top: 3px solid #007acc; }
-        .footer-links { margin: 20px 0; }
-        .footer-links a { color: #00ff88; text-decoration: none; margin: 0 15px; }
+        .contact-info { margin: 30px 0; }
+        .contact-item { margin: 10px 0; color: #00ff88; }
         
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5em; }
             nav { float: none; text-align: center; margin-top: 15px; }
-            nav a { margin: 0 10px; }
-            .btn { display: block; margin: 10px auto; max-width: 250px; }
+            nav a { margin: 0 10px; display: inline-block; }
+            .btn { display: block; margin: 10px auto; max-width: 280px; }
+            header { position: relative; }
+            .hero { margin-top: 0; padding: 80px 0 60px; }
         }
     </style>
 </head>
@@ -95,27 +102,27 @@
             <h2 class="section-title">✨ Мощные возможности</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h3>👥 Управление клиентами</h3>
+                    <h3>Управление клиентами</h3>
                     <p>Полная база клиентов с контактной информацией, историей взаимодействий и примечаниями. Быстрый поиск и фильтрация.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>📁 Проекты и задачи</h3>
+                    <h3>Проекты и задачи</h3>
                     <p>Создавайте проекты, устанавливайте дедлайны, отслеживайте статусы. Цветовая индикация сроков выполнения.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>💰 Финансовая аналитика</h3>
+                    <h3>Финансовая аналитика</h3>
                     <p>Отслеживайте доходы по проектам, анализируйте прибыльность. Встроенные отчеты и статистика.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🎯 Система подписок</h3>
+                    <h3>Система подписок</h3>
                     <p>Бесплатная версия + Premium с неограниченными возможностями. Онлайн-оплата через ЮKassa.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>💾 Автоматические бэкапы</h3>
+                    <h3>Автоматические бэкапы</h3>
                     <p>Ваши данные в безопасности. Автоматическое резервное копирование и восстановление.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🎨 Профессиональный интерфейс</h3>
+                    <h3>Профессиональный интерфейс</h3>
                     <p>Современный темный дизайн, интуитивная навигация, адаптивный интерфейс.</p>
                 </div>
             </div>
@@ -160,9 +167,9 @@
                 
                 <div class="pricing-card">
                     <h3>🚀 Premium Годовой</h3>
-                    <div class="price">5000 ₽</div>
+                    <div class="price">5,000 ₽</div>
                     <div class="price-period">в год</div>
-                    <div style="color: #ffb900; margin: 10px 0;">Экономия 1000₽</div>
+                    <div style="color: #ffb900; margin: 10px 0; font-weight: bold;">Экономия 1,000₽</div>
                     <ul class="pricing-features">
                         <li>Все возможности Premium</li>
                         <li>Дополнительные бонусы</li>
@@ -178,32 +185,66 @@
 
     <section id="download" class="download">
         <div class="container">
-            <h2>📥 Начните работу прямо сейчас</h2>
-            <p>Скачайте бесплатную версию FreelancerCRM и испытайте все возможности на практике</p>
-            
-            <a href="#" class="btn" style="font-size: 1.2em; padding: 20px 50px;">
-                🚀 Скачать FreelancerCRM для Windows
-            </a>
-            
-            <div class="download-info">
-                <p><strong>Версия 1.0</strong> • Windows 10/11 • 15 MB</p>
-                <p>После установки вы получите 7 дней полного доступа ко всем функциям</p>
+            <div class="download-box">
+                <h2 style="font-size: 2.5em; margin-bottom: 20px; color: #00ff88;">📥 Начните работу</h2>
+                <p style="color: #cccccc; margin-bottom: 40px; font-size: 1.2em;">Скачайте бесплатную версию и испытайте все возможности</p>
+                
+                <div class="download-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>Скачайте программу</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>Запустите и работайте</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>Оплатите Premium в приложении</div>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn" style="font-size: 1.3em; padding: 20px 50px;">
+                    🚀 Скачать FreelancerCRM для Windows
+                </a>
+                
+                <div style="margin-top: 30px; color: #888; font-size: 0.9em;">
+                    <p><strong>Версия 1.0</strong> • Windows 10/11 • ~15 MB</p>
+                    <p>После установки вы получите 7 дней полного доступа ко всем функциям</p>
+                </div>
             </div>
         </div>
     </section>
 
     <footer id="contact">
         <div class="container">
-            <div class="logo" style="font-size: 24px;">🚀 FreelancerCRM</div>
-            <p style="margin: 20px 0; color: #cccccc;">Профессиональная CRM система для фрилансеров и малого бизнеса</p>
+            <div class="logo" style="font-size: 2em; margin-bottom: 20px;">🚀 FreelancerCRM</div>
+            <p style="margin: 20px 0; color: #cccccc; font-size: 1.1em;">Профессиональная CRM система для фрилансеров и малого бизнеса</p>
             
-            <div class="footer-links">
-                <a href="mailto:d.antonets@yandex.ru">📧 d.antonets@yandex.ru</a>
-                <a href="#">📞 Телеграм для поддержки</a>
+            <div class="contact-info">
+                <div class="contact-item">📧 Email: d.antonets@yandex.ru</div>
+                <div class="contact-item">🕒 Поддержка: 24/7</div>
+                <div class="contact-item">💬 Telegram: @username</div>
             </div>
             
-            <p style="margin-top: 30px; color: #888;">© 2024 FreelancerCRM. Все права защищены.</p>
+            <p style="margin-top: 40px; color: #888; border-top: 1px solid #444; padding-top: 20px;">
+                © 2024 FreelancerCRM. Все права защищены.
+            </p>
         </div>
     </footer>
+
+    <script>
+        // Плавная прокрутка
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Обновление года в футере
+        document.querySelector('footer p').innerHTML = `© ${new Date().getFullYear()} FreelancerCRM. Все права защищены.`;
+    </script>
 </body>
 </html>
